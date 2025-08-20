@@ -1,0 +1,236 @@
+(deflisten music :initial "{}" "./scripts/music.sh")
+(deflisten pmusic :initial "{}" "./scripts/pmusic.sh")
+
+;; --- --- --- VENTANAS --- --- ---
+
+(defwindow User
+  :monitor 0
+  :focusable "ondemand"
+  :geometry (geometry :x "10"
+                      :y "10"
+                      :width "15%"
+                      :height "40%"
+                      :anchor "center right")
+  :stacking "fg"
+  :wm-ignore true
+  (close-button))
+
+(defwindow services
+           :monitor 0
+           :focusable "ondemand"
+           :geometry (geometry :x "10px"
+                               :y "10px"
+                               :width "15%"
+                               :height "30%"
+                               :anchor "top right")
+           :stacking "fg"
+           :reserve (struts :distance "0px" :side "top")
+           :wm-ignore "false"
+           :focusable "false"
+           (Userctl)
+)
+
+;; --- --- --- SERVICIOS WIDGETS --- --- ---
+
+(defwidget Userctl []
+           (box :orientation "vertical" 
+                :space-evenly false
+                (box  :orientation "horizontal"
+                      :space-evenly false
+                      (box :class "app-icon")
+                      (UserTitle :text "Maximus")
+                      (close-button))
+
+                (box :orientation "horizontal"
+                      :class "events-box"
+                      :space-evenly true
+                      (box :class "cpu-box"
+                            :orientation "vertical"
+                            (eventbox :class "cpu-hover"
+
+                                  (circular-progress :class "cpu"
+                                        :value {round(EWW_CPU.avg,10)}
+                                        :thickness 5
+                                        (box :class "cpu-ico"
+                                              (label :text ""))))
+                            
+                            (box :class "cpu-text" 
+                                  :space-evenly false
+                                  :halign "center"
+                                  (label :text "CPU:")
+                                  (label :text "${round(EWW_CPU.avg,0)}%")))
+
+                      (box :class "disk-box"
+                            :orientation "vertical"
+                            (eventbox
+                                  (circular-progress :class "disk"
+                                        :value {round(EWW_DISK["/"].used_perc,10)}
+                                        :thickness 5
+                                        (box :class "disk-ico"
+                                              (label :text ""))))
+                            (box :class "disk-text" 
+                                  :space-evenly false
+                                  :halign "center"
+                                  (label :text "ROM:")
+                                  (label :text "${round(EWW_DISK["/"].used_perc,0)}%")))
+
+                      (box :class "ram-box"
+                            :orientation "vertical"
+                            (eventbox
+                                  (circular-progress :class "ram"
+                                        :value {round(EWW_RAM.used_mem_perc,10)}
+                                        :thickness 5
+                                        (box :class "ram-ico"
+                                              (label :text ""))))
+                            (box :class "cpu-text" 
+                                  :space-evenly false
+                                  :halign "center"
+                                  (label :text "RAM:")
+                                  (label :text "${round(EWW_RAM.used_mem_perc,0)}%"))))
+
+                (box :orientation "horizontal" :class "music-panel"
+                      :space-evenly false
+                      (box :class "album-ico"
+                            :style "background-image: url('${music.thumbnail}');")
+                      (box :class "music-box"
+                            :orientation "vertical"
+                            :space-evenly false
+                            (label :text "${music.title}" :halign "start" :limit-width 21 :class "music-title")
+                            (box :orientation "horizontal"
+                                  (label :text "${music.artist}" :halign "start" :limit-width 25 :class "music-artist")
+                                  (label :text "${pmusic.positionStr}/${music.lengthStr}" :class "music-time")
+                            )
+                            (scale :class "music-slider"
+                                  :min 0
+                                  :max {music.length}
+                                  :value {pmusic.position})
+                            (box :orientation "horizontal" :class "music-controls" :space-evenly false
+                                (back-button)
+                                (play-button)
+                                (next-button))))
+
+                (box :orientation "vertical"
+                      :space-evenly false
+                      (ServiceTitle :text "Services")
+                      (box :orientation "vertical"
+                            :spacing 8
+                            (dhcpcd-button)
+                            (box :orientation "horizontal"
+                                    (xampp-ON-button)
+                                    (xampp-OFF-button))))
+
+                (box :orientation "vertical"
+                      :space-evenly false
+                      (BgTitle :text "Backgrounds")
+                      (box :orientation "vertical"
+                            :spacing 10
+                            (box :orientation "horizontal" :spacing 6
+                                  (bg-1)
+                                  (bg-2)
+                                  (bg-3)
+                                  (bg-4))
+                            (box :orientation "horizontal" :spacing 6
+                                  (bg-5)
+                                  (bg-6)
+                                  (bg-7)
+                                  (bg-8))))))
+
+(defwidget space [text]
+  (label :text :text
+         :class "space"))
+
+(defwidget ServiceTitle [text]
+  (label :text text
+         :class "service-title"))
+
+(defwidget BgTitle [text]
+  (label :text text
+         :class "bg-title"))
+
+(defwidget UserTitle [text]
+  (label :text text
+         :class "user-title"))
+
+(defwidget close-button []
+    (button
+        :onclick "eww close services"
+        :class "close-btn"
+        "×"))
+
+(defwidget back-button []
+  (button :onclick "playerctl previous" :class "back-btn" "󰒮")
+)
+
+(defwidget next-button []
+  (button :onclick "playerctl next" :class "next-btn" "󰒭")
+)
+
+(defwidget play-button []
+  (button :onclick "playerctl play-pause" :class "play-btn" {music.status == "Playing" ? "󰓛" : "󰐊"})
+)
+
+(defwidget dhcpcd-button []
+    (button
+        :class "dhcpcd-btn"
+        :onclick "~/.local/bin/dhcpcd.sh"
+        "dhcpcd"))
+
+(defwidget xampp-ON-button []
+    (button
+        :class "xampp-on-btn"
+        :onclick "~/.local/bin/xampp.sh"
+        "Xampp ON"))
+
+(defwidget xampp-OFF-button []
+    (button
+        :class "xampp-off-btn"
+        :onclick "~/.local/bin/xampp_off.sh"
+        "Xampp OFF"))
+
+(defwidget bg-1 []
+    (button
+        :class "background-btn bg-1"
+        :onclick "pkill swaybg && swaybg -i ~/Downloads/wall/2.jpg -m fill &"
+        ""))
+
+(defwidget bg-2 []
+    (button
+        :class "background-btn bg-2"
+        :onclick "pkill swaybg && swaybg -i ~/Downloads/wall/20-2.jpg -m fill &"
+        ""))
+
+(defwidget bg-3 []
+    (button
+        :class "background-btn bg-3"
+        :onclick "pkill swaybg && swaybg -i ~/Downloads/wall/44.png -m fill &"
+        ""))
+
+(defwidget bg-4 []
+    (button
+        :class "background-btn bg-4"
+        :onclick "pkill swaybg && swaybg -i ~/Downloads/wall/43.png -m fill &"
+        ""))
+
+(defwidget bg-5 []
+    (button
+        :class "background-btn bg-5"
+        :onclick "pkill swaybg && swaybg -i ~/Downloads/wall/5.jpg -m fill &"
+        ""))
+
+(defwidget bg-6 []
+    (button
+        :class "background-btn bg-6"
+        :onclick "pkill swaybg && swaybg -i ~/Downloads/wall/42.jpg -m fill &"
+        ""))
+
+(defwidget bg-7 []
+    (button
+        :class "background-btn bg-7"
+        :onclick "pkill swaybg && swaybg -i ~/Downloads/wall/51.png -m fill &"
+        ""))
+
+(defwidget bg-8 []
+    (button
+        :class "background-btn bg-8"
+        :onclick "pkill swaybg && swaybg -i ~/Downloads/wall/50-5.jpg -m fill &"
+        ""))

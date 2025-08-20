@@ -1,0 +1,104 @@
+* {
+    border: none;   
+    font-family: "Hack Nerd Font","Font Awesome","Fira Code", sans-serif;
+    font-size: 12px;
+}
+
+window#waybar {
+  margin-top: 0px;
+  background: rgba(0, 0, 0,0);
+  color: #abb7bf;
+}
+
+/* ----- WORKSPACES ----- */
+
+#workspaces {
+  padding: 0 5px;
+  background-color: rgba(0,0,0,0.8);
+  border-right: none;
+  margin-top: 10px;
+}
+
+#workspaces button {
+  padding: 0 2px;
+  background: transparent;
+  color: #abb2bf;
+  border: none;
+  box-shadow: inset 0 -3px transparent;
+  transition: all 0.25s ease;
+}
+
+#workspaces button:hover {
+  color: #ffffff;
+  text-shadow: none;
+  background: rgba(0,0,0,0.2);
+  border-radius: 0;
+}
+
+#workspaces button.active {
+  background-color: #d4d4d4;
+  color: #212121;
+  border-radius: 12px;
+  padding: 0 5px;
+}
+
+/* ----- Widgets ----- */
+  
+#custom-menu {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  margin-right: 10px;
+  color: #900;
+}
+
+#pulseaudio {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+#image {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  margin-left: 10px;
+}
+
+#custom-media {
+  border-radius: 12px;
+}
+
+#custom-steam {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  font-size: 15px;
+}
+
+#custom-discord {
+  font-size: 13px;
+}
+
+#custom-reboot, #custom-browser {
+  font-size: 15px;
+}
+
+#clock, #image, #custom-reboot, #custom-poweroff, #custom-logout, #custom-hardware, #custom-terminal, #custom-browser, #custom-nvim, #custom-discord, #custom-steam, #battery, #network, #tray, #pulseaudio, #temperature, #cpu, #memory, #custom-media,#custom-menu {
+    padding: 0 10px;
+    background-color: rgba(0,0,0,0.8);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+#cpu:hover, #custom-poweroff:hover, #custom-reboot:hover, #custom-logout:hover,#custom-hardware:hover, #memory:hover,#custom-terminal:hover,#custom-browser:hover,#custom-nvim:hover, #custom-discord:hover,#custom-steam:hover, #clock:hover, #battery:hover, #network:hover, #tray:hover, #pulseaudio:hover, #temperature:hover, #custom-media:hover,#custom-menu {
+  color: #ffffff;
+} 
+
+/* #battery.charging {
+    color: #98c379;
+}
+
+#battery.warning:not(.charging) {
+    color: #e5c07b;
+}
+
+#battery.critical:not(.charging) {
+    color: #e06c75;
+}*/

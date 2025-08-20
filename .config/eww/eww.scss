@@ -1,0 +1,216 @@
+* {
+  font-family: "Hack Nerd Font";
+  all: unset;
+}
+
+.services {
+  background-color: #121218;
+  color: #eceff4;
+  font-family: "Hack Nerd Font";
+  padding-bottom: 10px;
+}
+
+
+button {
+  background-color: #1b1b1f;
+  border-radius: 3px;
+  box-shadow: 2px 10px 5px #0f0f0f;
+  transition: color 0.4s;
+  transition: background-color 0.4s;
+
+  &:hover{
+    color: #f4f4f4;
+    background-color: #222228;
+  }
+}
+
+.service-title {
+  font-size: 15px;
+  background-color: transparent;
+  margin: 8px 10px 10px 10px;
+}
+
+.close-btn {
+  min-width: 0px;
+  min-height: 0px;
+  padding: 0 5px;
+  margin: 8px 7px 50px 23px;
+  background-color: transparent;
+  border: 2px solid transparent;
+  transition: color 0.4s;
+  transition: background-color 0.4s;
+  color: #b4b4b4;
+  &:hover{
+    color: #ffffff;
+    background-color: #222228;
+  }
+}
+
+.user-title {
+  background-color: transparent;
+  font-size: 20;
+  margin: 23px 12px 32px 28px;
+}
+
+.app-icon {
+  margin: 12px 0px 14px 12px;
+  padding: 0px 26px 0px 26px;
+  border: 1px solid #747474;
+  border-radius: 50%;
+  background: url("/home/ecty/.config/eww/user.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.dhcpcd-btn {
+  margin: 0 10px;
+  padding: 4px 0 4px 0;
+}
+
+.xampp-on-btn, .xampp-off-btn {
+  margin: 0 10px;
+  padding: 3px 0 3px 0;
+}
+
+.bg-title {
+  font-size: 14px;
+  background-color: transparent;
+  margin: 14px 10px 10px 10px;
+}
+
+
+.background-btn {
+  margin: 0 10px;
+  padding: 3px 0 3px 0;
+  font-size: 11;
+}
+
+.bg-1 {
+  background: url("/home/ecty/Downloads/wall/2.jpg");
+}
+
+.bg-2 {
+  background: url("/home/ecty/Downloads/wall/20-2.jpg");
+}
+
+.bg-3 {
+  background: url("/home/ecty/Downloads/wall/44.png");
+}
+
+.bg-4 {
+  background: url("/home/ecty/Downloads/wall/43.png");
+}
+
+.bg-5 {
+  background: url("/home/ecty/Downloads/wall/5.jpg");
+}
+
+.bg-6 {
+  background: url("/home/ecty/Downloads/wall/42.jpg");
+}
+
+.bg-7 {
+  background: url("/home/ecty/Downloads/wall/51.png");
+}
+
+.bg-8 {
+  background: url("/home/ecty/Downloads/wall/50-5.jpg");
+}
+
+.bg-1, .bg-2, .bg-3, .bg-4, .bg-5, .bg-6, .bg-7, .bg-8 {
+  background-size: cover;
+  background-position: center;
+  transition: box-shadow 0.35s;
+  &:hover {
+    box-shadow: 0px 0px 5px 2px #282848;
+  }
+}
+
+.events-box {
+  margin: 0px 10px 10px 10px;
+}
+
+.cpu {
+  color: #981818;
+  background-color: #080808;
+}
+
+.disk {
+  color: #281868;
+  background-color: #080808;
+}
+
+.ram {
+  color: green;
+  background-color: #080808;
+}
+
+.ram-ico, .cpu-ico,.disk-ico {
+  color: #eceff4;
+  padding: 5px;
+  margin: 10px 20px 10px 15px;
+}
+
+.ram-ico {
+  margin: 10px 18px 10px 15px;
+}
+
+.disk-ico {
+  margin: 10px 17px 10px 15px;
+}
+
+.disk-text, .ram-text, .cpu-text {
+  font-size: 11;
+}
+
+.music-panel {
+  margin: 0px 0px 15px 0px;
+}
+
+.album-ico {
+  padding: 32px 32px 32px 38px;
+  margin: 0px 0px 0px 10px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+
+.music-title {
+  font-size: 12;
+  margin: 0px 0px 0px 10px;
+}
+
+.music-artist {
+  font-size: 10;
+  margin: 3px 0px 0px 10px;
+}
+
+.music-time {
+  font-size: 10;
+  margin-top: 3px;
+}
+
+.music-slider {
+  margin: 5px 10px 0px 10px
+}
+
+.music-slider trough {
+  min-height: 5px;
+  min-width: 140px;
+  background-color: #353535;
+}
+
+.music-slider trough highlight {
+  background-color: #999999;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.music-controls {
+  margin: 10px 0px 0px 30px;
+}
+
+.back-btn, .play-btn, .next-btn {
+  padding: 0px 5px 0px 5px;
+  margin: 0px 5px 0px 5px;
+}

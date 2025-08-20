@@ -1,0 +1,207 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+
+    // ---------- MODULOS
+
+    "modules-left": [
+      "group/arch",
+      "group/hardware",
+      "hyprland/workspaces",
+      "custom/terminal",
+      "custom/browser",
+      "custom/nvim",
+      "custom/discord",
+      "custom/steam"
+    ],
+    "modules-center": ["custom/media"],
+    "modules-right": [
+      "pulseaudio",
+      "network",
+      "battery",
+      "tray",
+      //"custom/clima",
+      "clock",
+      "custom/menu"
+    ],
+
+    // MODULOS LEFT
+
+    "group/arch": {
+      "orientation": "horizontal",
+      "drawer": {
+        "transition-duration": 500,
+        "children-class": "not-power",
+        "transition-left-to-right": true
+      },
+      "modules": [
+        "image",
+        "custom/poweroff",
+        "custom/reboot",
+        "custom/logout"
+      ]
+    },
+
+    // PRIMER GRUPO
+
+    "image": {
+        "path": "/home/ecty/.config/waybar/img/arch.png",
+        "size": 18,
+        "tooltip": false,
+        "on-click": "rofi -show drun",
+        "format": ""
+    },
+    "custom/poweroff": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "shutdown now"
+      },
+    "custom/reboot": {
+      "format": "󰜉",
+      "tooltip": false,
+      "on-click": "reboot"
+    },
+    "custom/logout": {
+      "format": "󰗼",
+      "tooltip": false,
+      "on-click": "hyprctl dispatch exit"
+    },
+
+
+    // SEGUNDO GRUPO
+
+    "group/hardware": {
+      "orientation": "horizontal",
+      "drawer": {
+        "transition-duration": 500,
+        "children-class": "not-power",
+        "transition-left-to-right": true,
+        "click-to-reveal": true 	
+      },
+      "modules": [
+        "custom/hardware",
+        "cpu",
+        "memory",
+        "temperature"
+      ]
+    },
+
+    "custom/hardware": {
+      "format": "",
+      "tooltip": false
+    },
+    "cpu": { 
+         "interval": 4,
+         "format": "<span color='#ff2020'></span> {usage}%"
+    },
+    "memory": {
+         "interval": 4,
+         "format": "<span color='#94bf00'></span> {used:0.1f}G",
+         "tooltip": false
+    },
+    "temperature": {
+         "tooltip": false,
+         "format": "<span color='#e5c07b'></span> {temperatureC}°C",
+         "critical-threshold": 80,
+         "format-critical": "<span color='#ff505b'></span> {temperatureC}°C"
+    },
+
+
+    "custom/terminal": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "alacritty -e bash -c 'fastfetch && bash'"
+    },
+    "custom/browser": {
+      "format": "󰈹",
+      "tooltip": false,
+      "on-click": "/home/ecty/Downloads/zen/zen"
+    },
+    "custom/nvim": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "alacritty -e bash -c 'nvim'"
+    },
+    "custom/discord": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "discord"
+    },
+    "custom/steam": {
+      "format": " ",
+      "tooltip": false,
+      "on-click": "steam"
+    },
+
+    // MODULO CENTRAL
+
+    "custom/media": {
+        "format": "{}",
+        "tooltip": false,
+        "max-length": 40, // límite de caracteres
+        "on-click": "playerctl play-pause", // pausar/reanudar
+        "on-click-right": "playerctl next", // siguiente canción
+        "on-click-middle": "playerctl previous", // canción anterior
+        "smooth-scrolling": true, // efecto de desplazamiento suave
+        "exec": "playerctl metadata --format '{{artist}} - {{title}}' -F"
+    }, 
+
+    // MODULO RIGHT
+
+    "pulseaudio": {
+        "scroll-step": 2, // %, can be a float
+        "format": "<span color='#a58Ff0'>{icon}</span>  {volume}%", //"{icon}  {volume}% {format_source}",
+        "format-bluetooth": " {icon} {volume}%",
+        "format-bluetooth-muted": "  {icon}",
+        "format-muted": "<span color='#b53F30'></span>",
+        "tooltip": false,
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "foot -a pw-top pw-top"
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) <span color='#009940'></span>",
+        "format-ethernet": "<span color='#009940'></span>  {ifname}",
+        "interval": 3,
+        "tooltip-format": "{ipaddr}/{cidr} via {gwaddr}",
+        "format-linked": "<span color='#009940'></span>  {ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠ {ifname}",
+        "format-alt": "<span color='#009940'></span>  {ifname}: ⭡{bandwidthUpBytes} ⭣{bandwidthDownBytes}"
+    },
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+    "clock": {
+        "timezone": "America/Argentina/Buenos_Aires",
+        "tooltip": false,
+        "format": "<span color='#e0d080'></span> {:%H:%M %d-%m}",
+        "format-alt": "<span color='#e0d080'></span> {:%A, %d %B %Y}"
+    },
+    "custom/menu": {
+        "format": " ",
+        "tooltip": false,
+        "on-click": "eww open services"
+    }
+
+    //"custom/clima":{
+        //"exec": "~/.config/waybar/scripts/tiempo.sh",
+        //"interval": 1800,
+        //"format": "{}"
+    //},
+    //"hyprland/window": {
+        //"tooltip": false,
+        //"max-length": 40
+    //},
+}
