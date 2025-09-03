@@ -6,4 +6,4 @@ This is for reading purposes only! Using this code on your machine may not work,
 <br><br>
 |-- Eww
 <br><br>
-<img width="263" height="483" alt="image" src="https://github.com/user-attachments/assets/05f63f10-26fa-43c7-9d05-40c350380b22" />
+<img width="263" height="483" alt="image" style="margin: auto" src="https://github.com/user-attachments/assets/05f63f10-26fa-43c7-9d05-40c350380b22" />
